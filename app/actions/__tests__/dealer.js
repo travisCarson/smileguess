@@ -1,5 +1,5 @@
-jest.unmock('../gameMaster.js');
-import { SUBMIT_HINT, submitHint } from '../gameMaster.js';
+jest.unmock('../dealer.js');
+import { SUBMIT_HINT, submitHint } from '../dealer.js';
 
 describe('User Action Types', () => {
   it('should have an action type SUBMIT_HINT', () => {
@@ -22,3 +22,4 @@ describe('submitHint Action Creator', () => {
     expect(submitHint('leaf').hint).toEqual('leaf');
   });
 });
+
