@@ -25,6 +25,4 @@ describe('Users Reducer', () => {
     const myNewState = userReducer(myInitialState, myAction);
     expect(myNewState).toEqual({ users: [2] });
   });
-
 });
-
