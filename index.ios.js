@@ -3,13 +3,12 @@
  * https://github.com/facebook/react-native
  * @flow
  */
-
 import React, {
   AppRegistry,
   Component,
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
 
 class smileguess extends Component {
