@@ -1,9 +1,9 @@
 export const JOIN_GAME = 'JOIN_GAME';
 export const SUBMIT_GUESS = 'SUBMIT_GUESS';
 
-export const joinGame = (userid) => ({
+export const joinGame = (user) => ({
   type: JOIN_GAME,
-  userid,
+  user,
 });
 
 export const submitGuess = (guess) => ({

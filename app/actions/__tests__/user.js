@@ -17,13 +17,10 @@ describe('joinGame Action Creator', () => {
     expect(typeof joinGame).toEqual('function');
   });
   it('should return an object', () => {
-    expect(typeof joinGame(5)).toEqual('object');
+    expect(typeof joinGame(6)).toEqual('object');
   });
   it('should have a type property of JOIN_GAME', () => {
     expect(joinGame(6).type).toEqual(JOIN_GAME);
-  });
-  it('should have a userid property of passed in userid', () => {
-    expect(joinGame(6).userid).toEqual(6);
   });
 });
 
