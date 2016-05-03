@@ -1,5 +1,5 @@
 import { SUBMIT_GUESS } from '../actions/user.js';
-import { SUBMIT_HINT } from '../actions/gameMaster.js';
+import { SUBMIT_HINT } from '../actions/dealer.js';
 
 const noAction = {
   type: 'NO_ACTION',

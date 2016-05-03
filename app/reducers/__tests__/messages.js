@@ -1,7 +1,7 @@
 jest.unmock('../messages.js');
 import messagesReducer from '../messages.js';
 import { SUBMIT_GUESS } from '../../actions/user.js';
-import { SUBMIT_HINT } from '../../actions/gameMaster.js';
+import { SUBMIT_HINT } from '../../actions/dealer.js';
 
 describe('messages reducer', () => {
   it('should return the initial state', () => {
