@@ -1,3 +1,9 @@
+/* Import Dependencies */
+import { connect } from 'react-redux';
+
+/* Import Provider */
+import { mapHomeScreen } from '../providers/providers.js';
+
 /* Import Components */
 import React, {
   View,
@@ -30,4 +36,9 @@ HomeScreen.propTypes = {
   onJoinGame: PropTypes.func.isRequired,
 };
 
-export default HomeScreen;
+const HomeScreenContainer = connect(
+  mapHomeScreen.mapStateToProps,
+  mapHomeScreen.mapDispatchToProps
+)(HomeScreen);
+
+export default HomeScreenContainer;

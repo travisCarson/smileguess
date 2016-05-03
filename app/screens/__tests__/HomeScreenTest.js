@@ -1,36 +1,43 @@
+/* Import Test Utils */
 import TestUtils from 'react-addons-test-utils';
-import React from 'react-native';
 import { findWithType } from 'react-shallow-testutils';
 
-jest.unmock('react-native-button');
-import Button from 'react-native-button';
+/* Import Mocks for Testing */
+import React from 'react-native'; // <rootdir>/app/__mocks__/react-native.js
+import Button from 'react-native-button'; // Mocked automatically
 
+/* Must be mocked explicitly because set as an unmocked module in package.json */
+jest.mock('react-redux'); // <rootdir>/app/__mocks__/react-redux.js
 
+/* Unmock HomeScreen for unit testing */
 jest.unmock('../HomeScreen.js');
 import HomeScreen from '../HomeScreen.js';
 
+/* Create mock function to pass in as prop for testing */
 const joinGame = jest.genMockFunction();
-// console.log(joinGame);
 
 describe('HomeScreen', () => {
-  it('should render', () => {
+  let output;
+
+  beforeEach(() => {
     const renderer = TestUtils.createRenderer();
     renderer.render(<HomeScreen onJoinGame={joinGame} />);
-    const output = renderer.getRenderOutput();
+    output = renderer.getRenderOutput();
+  });
+
+  afterEach(() => {
+    output = undefined;
+  });
+
+  it('should render', () => {
     expect(output).toBeDefined();
   });
 
   it('should have a "Join Game" button', () => {
-    const renderer = TestUtils.createRenderer();
-    renderer.render(<HomeScreen onJoinGame={joinGame} />);
-    const output = renderer.getRenderOutput();
     expect(() => { findWithType(output, Button); }).not.toThrow();
   });
 
   it('should have an onTouchEnd event', () => {
-    const renderer = TestUtils.createRenderer();
-    renderer.render(<HomeScreen onJoinGame={joinGame} />);
-    const output = renderer.getRenderOutput();
     const joinButton = findWithType(output, Button);
     joinButton.props.onTouchEnd();
     expect(joinGame).toBeCalled();
