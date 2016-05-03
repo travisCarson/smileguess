@@ -3,20 +3,23 @@
  * https://github.com/facebook/react-native
  * @flow
  */
+
+/* Import Dependencies */
 import React, {
   AppRegistry,
   Component,
-  StyleSheet,
-  Text,
-  View,
 } from 'react-native';
 
+/* Import Screens */
 import HomeScreen from './app/screens/HomeScreen.js';
+
+/* Import Actions */
+import { joinGame } from './app/actions/user.js';
 
 class smileguess extends Component {
   render() {
     return (
-      <HomeScreen />
+      <HomeScreen onJoinGame={joinGame} />
     );
   }
 }
