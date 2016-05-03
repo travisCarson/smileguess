@@ -9,16 +9,14 @@ import React, {
   AppRegistry,
   Component,
 } from 'react-native';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-/* Import Reducer */
-import rootReducer from './app/reducers/index.js';
+/* Import Store */
+import configureStore from './app/store/configureStore.js';
+const store = configureStore({ players: [1, 2, 3] });
 
 /* Import Screens */
 import HomeScreen from './app/screens/HomeScreen.js';
-
-let store = createStore(rootReducer);
 
 class smileguess extends Component {
   render() {
