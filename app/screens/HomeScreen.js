@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 const HomeScreen = ({ onJoinGame }) => (
   <View style={styles.container}>
     <View style={styles.buttonContainer}>
-      <Button style={styles.button} onTouchEnd={onJoinGame}> Join Random Game! </Button>
+      <Button style={styles.button} onPress={onJoinGame}> Join Random Game! </Button>
     </View>
   </View>
 );

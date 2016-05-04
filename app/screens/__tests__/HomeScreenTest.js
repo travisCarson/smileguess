@@ -37,9 +37,9 @@ describe('HomeScreen', () => {
     expect(() => { findWithType(output, Button); }).not.toThrow();
   });
 
-  it('should have an onTouchEnd event', () => {
+  it('should have an onPress event', () => {
     const joinButton = findWithType(output, Button);
-    joinButton.props.onTouchEnd();
+    joinButton.props.onPress();
     expect(joinGame).toBeCalled();
   });
 });

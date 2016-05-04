@@ -13,13 +13,13 @@ import devTools from 'remote-redux-devtools';
 
 export default function configureStore(initialState) {
   const enhancer = compose(
-    applyMiddleware(thunk)
-    // devTools({
-    //   name: 'Smile Guess',
-    //   realtime: true,
-    //   hostname: 'localhost',
-    //   port: 8050,
-    // })
+    applyMiddleware(thunk),
+    devTools({
+      name: 'Smile Guess',
+      realtime: true,
+      hostname: 'localhost',
+      port: 8000,
+    })
   );
   return createStore(rootReducer, initialState, enhancer);
 }

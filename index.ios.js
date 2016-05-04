@@ -13,7 +13,7 @@ import { Provider } from 'react-redux';
 
 /* Import Store */
 import configureStore from './app/store/configureStore.js';
-const store = configureStore({ players: [1, 2, 3] });
+const store = configureStore({});
 
 /* Import Screens */
 import HomeScreen from './app/screens/HomeScreen.js';
