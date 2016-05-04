@@ -3,20 +3,24 @@ import React, {
   AppRegistry,
   Component,
 } from 'react-native';
-import { Provider } from 'react-redux';
+import { connect, Provider } from 'react-redux';
+import { Router } from 'react-native-router-flux';
 
 /* Import Store */
 import configureStore from './app/store/configureStore.js';
 const store = configureStore({});
 
-/* Import Screens */
-import HomeScreen from './app/screens/HomeScreen.js';
+/* Set up router */
+const RouterWithRedux = connect()(Router);
+
+/* Import all scenes */
+import Screens from './app/screens/Screens.js';
 
 class smileguess extends Component {
   render() {
     return (
       <Provider store={store}>
-        <HomeScreen />
+        <RouterWithRedux scenes={Screens} />
       </Provider>
     );
   }

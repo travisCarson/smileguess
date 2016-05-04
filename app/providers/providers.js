@@ -5,7 +5,9 @@ import { joinGame } from '../actions/user.js';
 /* Home Screen Providers*/
 export const mapHomeScreen = {
   mapStateToProps() {
-    return {};
+    return {
+      joinGame,
+    };
   },
   mapDispatchToProps(dispatch) {
     return {
@@ -15,3 +17,4 @@ export const mapHomeScreen = {
     };
   },
 };
+

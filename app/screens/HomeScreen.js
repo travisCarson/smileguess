@@ -1,5 +1,6 @@
 /* Import Dependencies */
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 
 /* Import Provider */
 import { mapHomeScreen } from '../providers/providers.js';
@@ -24,17 +25,22 @@ const styles = StyleSheet.create({
   },
 });
 
-
 /**
  * Home Screen is a React functional component.
  * It provides an entry point for joining a random game.
  * In the future, it will display a list of available games to join.
  * @param {{onJoinGame: function()}} onPress event handler for the Join Game button.
+ * @desc onPress additionally triggers navigation to GameScreen
  */
 export const HomeScreen = ({ onJoinGame }) => (
   <View style={styles.container}>
     <View style={styles.buttonContainer}>
-      <Button style={styles.button} onPress={onJoinGame}> Join Random Game! </Button>
+      <Button
+        onPress={() => {
+          onJoinGame(4);
+          Actions.showGameScreen();
+        }}
+      >Go to Game Screen!</Button>
     </View>
   </View>
 );
