@@ -1,26 +1,26 @@
 jest.unmock('../dealer.js');
-import { submitHint } from '../dealer.js';
-import { SUBMIT_HINT } from '../../action_types/actionTypes.js';
+import { submitClue } from '../dealer.js';
+import { SEND_CLUE_MESSAGE } from '../../action_types/actionTypes.js';
 
 
 describe('User Action Types', () => {
-  it('should have an action type SUBMIT_HINT', () => {
-    expect(SUBMIT_HINT).toBeDefined();
-    expect(SUBMIT_HINT).toMatch('SUBMIT_HINT');
+  it('should have an action type SEND_CLUE_MESSAGE', () => {
+    expect(SEND_CLUE_MESSAGE).toBeDefined();
+    expect(SEND_CLUE_MESSAGE).toMatch('server/sendClueMessage');
   });
 });
 
-describe('submitHint Action Creator', () => {
+describe('submitClue Action Creator', () => {
   it('should be a function', () => {
-    expect(typeof submitHint).toEqual('function');
+    expect(typeof submitClue).toEqual('function');
   });
   it('should return an object', () => {
-    expect(typeof submitHint('leaf')).toEqual('object');
+    expect(typeof submitClue(6, 'leaf')).toEqual('object');
   });
-  it('should have a type property of SUBMIT_HINT', () => {
-    expect(submitHint('leaf').type).toEqual(SUBMIT_HINT);
+  it('should have a type property of SEND_CLUE_MESSAGE', () => {
+    expect(submitClue(6, 'leaf').type).toEqual(SEND_CLUE_MESSAGE);
   });
   it('should have a hint property of passed in hint', () => {
-    expect(submitHint('leaf').hint).toEqual('leaf');
+    expect(submitClue(6, 'leaf').message).toEqual('leaf');
   });
 });

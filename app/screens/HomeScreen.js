@@ -28,21 +28,21 @@ const styles = StyleSheet.create({
  * Home Screen is a React functional component.
  * It provides an entry point for joining a random game.
  * In the future, it will display a list of available games to join.
- * @param {{onJoinGame: function()}} onPress event handler for the Join Game button.
+ * @param {{onJoinRandomGame: function()}} onPress event handler for the Join Game button.
  * @desc onPress additionally triggers navigation to GameScreen
  */
-export const HomeScreen = ({ onJoinGame }) => (
+export const HomeScreen = ({ onJoinRandomGame }) => (
   <View style={styles.container}>
     <View style={styles.buttonContainer}>
       <Button
-        onPress={onJoinGame}
+        onPress={onJoinRandomGame}
       >Go to Game Screen!</Button>
     </View>
   </View>
 );
 
 HomeScreen.propTypes = {
-  onJoinGame: PropTypes.func.isRequired,
+  onJoinRandomGame: PropTypes.func.isRequired,
 };
 
 /**

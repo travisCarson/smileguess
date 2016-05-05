@@ -1,8 +1,4 @@
-import { PLAYER_JOIN_GAME } from '../action_types/actionTypes.js';
-
-const noAction = {
-  type: 'NO_ACTION',
-};
+import { SOCKET_PLAYER_JOIN_GAME } from '../action_types/actionTypes.js';
 
 const mergeNewUser = (state, user) => {
   const newUser = {};
@@ -10,9 +6,9 @@ const mergeNewUser = (state, user) => {
   return Object.assign({}, state, newUser);
 };
 
-export default (state = {}, action = noAction) => {
+export default (state = {}, action = {}) => {
   switch (action.type) {
-    case PLAYER_JOIN_GAME:
+    case SOCKET_PLAYER_JOIN_GAME:
       return mergeNewUser(state, action.user);
     default:
       return state;

@@ -1,6 +1,12 @@
-import { SUBMIT_HINT } from '../action_types/actionTypes.js';
+import { SEND_CLUE_MESSAGE } from '../action_types/actionTypes.js';
 
-export const submitHint = (hint) => ({
-  type: SUBMIT_HINT,
-  hint,
+/**
+ * This creates an action for the dealer to submit a clue
+ * This action is handeled by the server
+ */
+export const submitClue = (userid, message) => ({
+  type: SEND_CLUE_MESSAGE,
+  userid,
+  message,
 });
+

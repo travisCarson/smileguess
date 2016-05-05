@@ -14,14 +14,14 @@ jest.unmock('../HomeScreen.js');
 import HomeScreen from '../HomeScreen.js';
 
 /* Create mock function to pass in as prop for testing */
-const joinGame = jest.genMockFunction();
+const joinRandomGame = jest.genMockFunction();
 
 describe('HomeScreen', () => {
   let output;
 
   beforeEach(() => {
     const renderer = TestUtils.createRenderer();
-    renderer.render(<HomeScreen onJoinGame={joinGame} />);
+    renderer.render(<HomeScreen onJoinRandomGame={joinRandomGame} />);
     output = renderer.getRenderOutput();
   });
 
@@ -33,13 +33,13 @@ describe('HomeScreen', () => {
     expect(output).toBeDefined();
   });
 
-  it('should have a "Join Game" button', () => {
+  it('should have a "Join Random Game" button', () => {
     expect(() => { findWithType(output, Button); }).not.toThrow();
   });
 
   it('should have an onPress event', () => {
     const joinButton = findWithType(output, Button);
     joinButton.props.onPress();
-    expect(joinGame).toBeCalled();
+    expect(joinRandomGame).toBeCalled();
   });
 });

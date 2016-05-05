@@ -1,20 +1,23 @@
 /* Import Actions */
-import { joinGame, submitGuess } from '../actions/user.js';
+import { joinGame, joinRandomGame, submitGuess } from '../actions/user.js';
 import { Actions } from 'react-native-router-flux';
-
 
 /* Home Screen Providers*/
 export const mapHomeScreen = {
   mapStateToProps() {
-    return {
-      joinGame,
-    };
+    return {};
   },
   mapDispatchToProps(dispatch) {
     return {
+      onJoinRandomGame: () => {
+        dispatch(() => {
+          dispatch(joinRandomGame());
+          Actions.showGameScreen();
+        });
+      },
       onJoinGame: (id) => {
         dispatch(() => {
-          joinGame(id);
+          dispatch(joinGame(id));
           Actions.showGameScreen();
         });
       },
@@ -29,8 +32,11 @@ export const mapGameScreen = {
   },
   mapDispatchToProps(dispatch) {
     return {
-      onSubmitGuess: (guess) => {
-        dispatch(submitGuess(guess));
+      onSubmitGuess: (event) => {
+        /**
+         * TODO: remove hardcoded userid
+         */
+        dispatch(submitGuess(6, event.nativeEvent.text));
       },
     };
   },

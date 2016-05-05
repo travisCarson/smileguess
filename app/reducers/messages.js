@@ -1,15 +1,19 @@
-import { SUBMIT_GUESS, SUBMIT_HINT } from '../action_types/actionTypes.js';
+import { SOCKET_CLUE_MESSAGE, SOCKET_GUESS_MESSAGE } from '../action_types/actionTypes.js';
 
-const noAction = {
-  type: 'NO_ACTION',
-};
-
-export default (state = [], action = noAction) => {
+export default (state = [], action = {}) => {
   switch (action.type) {
-    case SUBMIT_GUESS:
-      return state.concat([action.guess]);
-    case SUBMIT_HINT:
-      return state.concat([action.hint]);
+    case SOCKET_GUESS_MESSAGE:
+      return state.concat([{
+        type: 'guess',
+        userid: action.userid,
+        message: action.message,
+      }]);
+    case SOCKET_CLUE_MESSAGE:
+      return state.concat([{
+        type: 'clue',
+        userid: action.userid,
+        message: action.message,
+      }]);
     default:
       return state;
   }
