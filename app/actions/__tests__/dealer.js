@@ -1,5 +1,7 @@
 jest.unmock('../dealer.js');
-import { SUBMIT_HINT, submitHint } from '../dealer.js';
+import { submitHint } from '../dealer.js';
+import { SUBMIT_HINT } from '../../action_types/actionTypes.js';
+
 
 describe('User Action Types', () => {
   it('should have an action type SUBMIT_HINT', () => {
@@ -22,4 +24,3 @@ describe('submitHint Action Creator', () => {
     expect(submitHint('leaf').hint).toEqual('leaf');
   });
 });
-

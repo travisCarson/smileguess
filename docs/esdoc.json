@@ -1,12 +1,13 @@
 {
-  "source": "./app/screens",
+  "source": "./app",
   "destination": "./docs/esdoc",
  "plugins": [
     {"name": "esdoc-es7-plugin"}
   ],
+  "excludes": ["__mocks__"],
   "autoPrivate": true,
   "unexportIdentifier": false,
-  "undocumentIdentifier": true,
+  "undocumentIdentifier": false,
   "builtinExternal": true,
   "index": "./README.md",
   "package": "./package.json",

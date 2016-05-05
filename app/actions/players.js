@@ -1,7 +1,7 @@
-export const PLAYER_JOIN_GAME = 'PLAYER_JOIN_GAME';
+import { PLAYER_JOIN_GAME } from '../action_types/actionTypes.js';
+
 
 export const playerJoinGame = (user) => ({
   type: PLAYER_JOIN_GAME,
   user,
 });
-

@@ -1,4 +1,4 @@
-import { PLAYER_JOIN_GAME } from '../actions/players.js';
+import { PLAYER_JOIN_GAME } from '../action_types/actionTypes.js';
 
 const noAction = {
   type: 'NO_ACTION',

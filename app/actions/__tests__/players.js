@@ -1,5 +1,7 @@
 jest.unmock('../players.js');
-import { PLAYER_JOIN_GAME, playerJoinGame } from '../players.js';
+import { playerJoinGame } from '../players.js';
+import { PLAYER_JOIN_GAME } from '../../action_types/actionTypes.js';
+
 
 describe('Player Action Types', () => {
   it('should have an action type PLAYER_JOIN_GAME', () => {
@@ -27,4 +29,3 @@ describe('playerJoinGame Action Creator', () => {
     expect(playerJoinGame(someDude1).user.id).toEqual(5);
   });
 });
-

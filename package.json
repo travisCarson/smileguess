@@ -28,7 +28,8 @@
       "./app/utils/dom.js",
       "./node_modules/react-dom",
       "./node_modules/redux",
-      "./node_modules/react-redux"
+      "./node_modules/react-redux",
+      "./app/action_types/actionTypes.js"
     ]
   },
   "devDependencies": {

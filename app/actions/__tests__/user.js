@@ -1,5 +1,6 @@
 jest.unmock('../user.js');
-import { JOIN_GAME, SUBMIT_GUESS, joinGame, submitGuess } from '../user.js';
+import { joinGame, submitGuess } from '../user.js';
+import { JOIN_GAME, SUBMIT_GUESS } from '../../action_types/actionTypes.js';
 
 describe('User Action Types', () => {
   it('should have an action type JOIN_GAME', () => {
@@ -38,4 +39,3 @@ describe('submitGuess Action Creator', () => {
     expect(submitGuess('tree').guess).toEqual('tree');
   });
 });
-

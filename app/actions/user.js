@@ -1,5 +1,5 @@
-export const JOIN_GAME = 'JOIN_GAME';
-export const SUBMIT_GUESS = 'SUBMIT_GUESS';
+import { JOIN_GAME, SUBMIT_GUESS } from '../action_types/actionTypes.js';
+
 
 export const joinGame = (gameId = null) => ({
   type: JOIN_GAME,
