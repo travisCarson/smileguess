@@ -2,7 +2,6 @@
 
 /* Import Dependencies */
 import { createStore, applyMiddleware, compose } from 'redux';
-import React from 'react-native';
 
 /* Import Reducer */
 import rootReducer from '../reducers/index.js';

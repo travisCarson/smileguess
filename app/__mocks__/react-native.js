@@ -30,8 +30,22 @@ View.propTypes = {
   style: React.PropTypes.object,
 };
 
+class TextInput extends React.Component {
+  render() { return false; }
+}
+
+TextInput.propTypes = {
+  style: React.PropTypes.object,
+};
+
 class PixelRatio extends React.Component {
   static get() { return 1; }
+}
+
+class Dimensions {
+  get() {
+    return { height: 568, width: 320 };
+  }
 }
 /**
  * ## Stubs
@@ -46,8 +60,10 @@ ReactNative.TouchableHighlight = View;
 ReactNative.TouchableWithoutFeedback = View;
 ReactNative.ToolbarAndroid = View;
 ReactNative.Image = View;
+ReactNative.TextInput = TextInput;
 ReactNative.PixelRatio = PixelRatio;
 ReactNative.NativeModules = {};
+ReactNative.Dimensions = new Dimensions();
 
 ReactNative.Platform = {};
 module.exports = ReactNative;

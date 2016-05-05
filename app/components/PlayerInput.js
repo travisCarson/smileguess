@@ -32,11 +32,20 @@ const styles = StyleSheet.create({
   },
 });
 
-const PlayerInput = () => (
+const PlayerInput = ({ onSubmitEditing }) => (
   <View style={styles.container}>
-    <TextInput style={styles.inputField} placeholder="Input your guess" />
+    <TextInput
+      style={styles.inputField}
+      placeholder="Input your guess"
+      returnKeyType="send"
+      onSubmitEditing={onSubmitEditing}
+    />
     <Button style={styles.send}>Send</Button>
   </View>
 );
+
+PlayerInput.propTypes = {
+  onSubmitEditing: PropTypes.func.isRequired,
+};
 
 export default PlayerInput;

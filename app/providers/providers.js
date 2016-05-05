@@ -1,5 +1,5 @@
 /* Import Actions */
-import { joinGame } from '../actions/user.js';
+import { joinGame, submitGuess } from '../actions/user.js';
 
 
 /* Home Screen Providers*/
@@ -18,3 +18,16 @@ export const mapHomeScreen = {
   },
 };
 
+/* Game Screen Providers*/
+export const mapGameScreen = {
+  mapStateToProps() {
+    return {};
+  },
+  mapDispatchToProps(dispatch) {
+    return {
+      onSubmitGuess: (guess) => {
+        dispatch(submitGuess(guess));
+      },
+    };
+  },
+};

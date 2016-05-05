@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 /* Import Provider */
-import { mapHomeScreen } from '../providers/providers.js';
+import { mapGameScreen } from '../providers/providers.js';
 
 /* Import Components */
 import React, {
@@ -37,18 +37,17 @@ const styles = StyleSheet.create({
  * or the players who are guessing.
  * @param {{onSubmitGuess: function()}} props for GameScreen.
  */
-export const GameScreen = () => (
+export const GameScreen = ({ onSubmitGuess }) => (
   <View style={styles.container}>
     <View style={styles.item}>
-      <PlayerInput />
+      <PlayerInput onSubmitEditing={onSubmitGuess} />
     </View>
   </View>
 );
 
-// GameScreen.propTypes = {
-//   onSubmitGuess: PropTypes.func.isRequired,
-//   onSubmitHint: PropTypes.func.isRequired,
-// };
+GameScreen.propTypes = {
+  onSubmitGuess: PropTypes.func.isRequired,
+};
 
 /**
  * GameScreenContainer is a 'container component' which binds the props and
@@ -56,9 +55,9 @@ export const GameScreen = () => (
  * It should be imported in favor of HomeScreen, which is exported only
  * for documentation purposes.
  */
-// const GameScreenScreenContainer = connect(
-//   mapGameScreen.mapStateToProps,
-//   mapGameScreen.mapDispatchToProps
-// )(GameScreen);
-//
-// export default GameScreenContainer;
+const GameScreenContainer = connect(
+  mapGameScreen.mapStateToProps,
+  mapGameScreen.mapDispatchToProps
+)(GameScreen);
+
+export default GameScreenContainer;
