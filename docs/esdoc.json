@@ -1,0 +1,14 @@
+{
+  "source": "./app/screens",
+  "destination": "./docs/esdoc",
+ "plugins": [
+    {"name": "esdoc-es7-plugin"}
+  ],
+  "autoPrivate": true,
+  "unexportIdentifier": false,
+  "undocumentIdentifier": true,
+  "builtinExternal": true,
+  "index": "./README.md",
+  "package": "./package.json",
+  "coverage": true
+}
