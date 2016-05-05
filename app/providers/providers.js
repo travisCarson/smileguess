@@ -1,5 +1,6 @@
 /* Import Actions */
 import { joinGame, submitGuess } from '../actions/user.js';
+import { Actions } from 'react-native-router-flux';
 
 
 /* Home Screen Providers*/
@@ -12,7 +13,10 @@ export const mapHomeScreen = {
   mapDispatchToProps(dispatch) {
     return {
       onJoinGame: (id) => {
-        dispatch(joinGame(id));
+        dispatch(() => {
+          joinGame(id);
+          Actions.showGameScreen();
+        });
       },
     };
   },

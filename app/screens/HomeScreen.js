@@ -1,6 +1,5 @@
 /* Import Dependencies */
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 
 /* Import Provider */
 import { mapHomeScreen } from '../providers/providers.js';
@@ -36,10 +35,7 @@ export const HomeScreen = ({ onJoinGame }) => (
   <View style={styles.container}>
     <View style={styles.buttonContainer}>
       <Button
-        onPress={() => {
-          onJoinGame(4);
-          Actions.showGameScreen();
-        }}
+        onPress={onJoinGame}
       >Go to Game Screen!</Button>
     </View>
   </View>

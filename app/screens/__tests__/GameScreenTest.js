@@ -5,7 +5,6 @@ import { findWithType } from 'react-shallow-testutils';
 /* Import Mocks for Testing */
 import React from 'react-native'; // <rootdir>/app/__mocks__/react-native.js
 import PlayerInput from '../../components/PlayerInput.js'; // Mocked automatically
-
 /* Must be mocked explicitly because set as an unmocked module in package.json */
 jest.mock('react-redux'); // <rootdir>/app/__mocks__/react-redux.js
 
