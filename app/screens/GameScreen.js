@@ -1,9 +1,5 @@
-// THIS IS A DUMMY FILE CREATED OFF HOMESCREEN USED FOR TESTING NAVIGATIONS
-
 /* Import Dependencies */
 import { connect } from 'react-redux';
-
-import { Actions } from 'react-native-router-flux';
 
 /* Import Provider */
 import { mapHomeScreen } from '../providers/providers.js';
@@ -13,36 +9,56 @@ import React, {
   View,
   StyleSheet,
   PropTypes,
+  Dimensions,
 } from 'react-native';
-import Button from 'react-native-button';
+import PlayerInput from '../components/PlayerInput.js';
+
+const { width: screenWidth } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     flex: 1,
   },
-  buttonContainer: {
-    flex: 0,
+  item: {
+    flexDirection: 'row',
+    backgroundColor: 'green',
+    width: screenWidth,
   },
 });
 
-const GameScreen = ({ onJoinGame }) => (
+
+/**
+ * GameScreen is a React functional component.
+ * It defines the game room players will see while playing the game.
+ * It displays messages as well as allows for user input form either the dealer
+ * or the players who are guessing.
+ * @param {{onSubmitGuess: function()}} props for GameScreen.
+ */
+export const GameScreen = () => (
   <View style={styles.container}>
-    <View style={styles.buttonContainer}>
-      <Button onPress={onJoinGame}> Don't join Random Game! </Button>
+    <View style={styles.item}>
+      <PlayerInput />
     </View>
   </View>
 );
 
-GameScreen.propTypes = {
-  onJoinGame: PropTypes.func.isRequired,
-};
+// GameScreen.propTypes = {
+//   onSubmitGuess: PropTypes.func.isRequired,
+//   onSubmitHint: PropTypes.func.isRequired,
+// };
 
-const GameScreenContainer = connect(
-  mapHomeScreen.mapStateToProps,
-  mapHomeScreen.mapDispatchToProps
-)(GameScreen);
-
-export default GameScreenContainer;
+/**
+ * GameScreenContainer is a 'container component' which binds the props and
+ * actions creators of GameScreen to the store and dispatcher, respectively.
+ * It should be imported in favor of HomeScreen, which is exported only
+ * for documentation purposes.
+ */
+// const GameScreenScreenContainer = connect(
+//   mapGameScreen.mapStateToProps,
+//   mapGameScreen.mapDispatchToProps
+// )(GameScreen);
+//
+// export default GameScreenContainer;
