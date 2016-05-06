@@ -16,7 +16,11 @@ import GameScreen from './GameScreen.js';
 const Screens = Actions.create(
   <Scene key="root">
     <Scene hideNavBar type="replace" key="showHomeScreen" initial={true} component={HomeScreen} />
-    <Scene type="push" key="showGameScreen" component={GameScreen} title="Welcome to your game!" />
+    <Scene
+      type="push" key="showGameScreen" component={GameScreen} title="Your game!"
+      onRight={() => Actions.showStatsScreen()} rightTitle="Stats"
+    />
+    <Scene type="push" key="showStatsScreen" component={HomeScreen} title="Game Stats" />
   </Scene>
 );
 
