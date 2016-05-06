@@ -1,10 +1,15 @@
 jest.unmock('../players.js');
 import playerReducer from '../players.js';
-import { SOCKET_PLAYER_JOIN_GAME } from '../../action_types/actionTypes.js';
+import { SOCKET_PLAYER_JOIN_GAME, SOCKET_PLAYER_LEAVE_GAME } from '../../action_types/actionTypes.js';
 
-const myInitialState = { 1: {
-  username: 'bob',
-} };
+const myInitialState = {
+  someOtherKey: true,
+  players: [1],
+  playersById: { 1: {
+    id: 1,
+    username: 'bob',
+  } },
+};
 
 describe('Players Reducer', () => {
   it('should be a function', () => {
@@ -19,14 +24,26 @@ describe('Players Reducer', () => {
     expect(myNewState).toBe(myInitialState);
   });
   it('should not mutate its inputs if given an action', () => {
-    const myAction = { type: SOCKET_PLAYER_JOIN_GAME, user: { id: 3, username: 'jay' } };
+    const myAction = { type: SOCKET_PLAYER_JOIN_GAME, player: { id: 3, username: 'jay' } };
     const myNewState = playerReducer(myInitialState, myAction);
     expect(myNewState).not.toBe(myInitialState);
   });
-  it('should add the userid to the state if given a "SOCKET_PLAYER_JOIN_GAME" action', () => {
-    const myAction = { type: SOCKET_PLAYER_JOIN_GAME, user: { id: 2, username: 'joan' } };
+  it('should add the player to the state if given a "SOCKET_PLAYER_JOIN_GAME" action', () => {
+    const myAction = { type: SOCKET_PLAYER_JOIN_GAME, player: { id: 2, username: 'joan' } };
     const myNewState = playerReducer(myInitialState, myAction);
-    expect(myNewState[2].username).toEqual('joan');
+    expect(myNewState.playersById[2].username).toEqual('joan');
+  });
+  it('should keep existing keys when given an action', () => {
+    const myAction = { type: SOCKET_PLAYER_JOIN_GAME, player: { id: 2, username: 'joan' } };
+    const myNewState = playerReducer(myInitialState, myAction);
+    expect(myNewState.someOtherKey).toBe(true);
+  });
+  it('should remove the player to the state if given a "SOCKET_PLAYER_LEAVE_GAME" action', () => {
+    const myAction = { type: SOCKET_PLAYER_JOIN_GAME, player: { id: 2, username: 'joan' } };
+    const myState = playerReducer(myInitialState, myAction);
+    const myNewAction = { type: SOCKET_PLAYER_LEAVE_GAME, userid: 2 };
+    const myNewState = playerReducer(myState, myNewAction);
+    expect(myNewState.playersById[2]).toBe(undefined);
   });
 });
 
