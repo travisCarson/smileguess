@@ -5,6 +5,7 @@ import { Actions, Scene } from 'react-native-router-flux';
 /* Import transition screens */
 import HomeScreen from './HomeScreen.js';
 import GameScreen from './GameScreen.js';
+import StatsScreen from './StatsScreen.js';
 
 /**
  * @desc scenes define transition screens
@@ -20,7 +21,10 @@ const Screens = Actions.create(
       type="push" key="showGameScreen" component={GameScreen} title="Your game!"
       onRight={() => Actions.showStatsScreen()} rightTitle="Stats"
     />
-    <Scene type="push" key="showStatsScreen" component={HomeScreen} title="Game Stats" />
+    <Scene
+      type="replace" key="showStatsScreen" component={StatsScreen} title="Game Stats"
+      onRight={() => Actions.showGameScreen()} rightTitle="To Game"
+    />
   </Scene>
 );
 

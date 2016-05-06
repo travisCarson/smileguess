@@ -47,6 +47,11 @@ class Dimensions {
     return { height: 568, width: 320 };
   }
 }
+
+class ListView extends React.Component {
+  static DataSource() {
+  }
+}
 /**
  * ## Stubs
  *
@@ -64,6 +69,7 @@ ReactNative.TextInput = TextInput;
 ReactNative.PixelRatio = PixelRatio;
 ReactNative.NativeModules = {};
 ReactNative.Dimensions = new Dimensions();
+ReactNative.ListView = ListView;
 
 ReactNative.Platform = {};
 module.exports = ReactNative;
