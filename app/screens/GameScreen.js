@@ -8,20 +8,25 @@ import { mapGameScreen } from '../providers/providers.js';
 /* Import Components */
 import React, {
   View,
+  ScrollView,
   StyleSheet,
   PropTypes,
   Dimensions,
+  Text,
 } from 'react-native';
 import PlayerInput from '../components/PlayerInput.js';
 
-const { width: screenWidth } = Dimensions.get('window');
+const { height: screenHeight, width: screenWidth } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+  },
+  contentContainer: {
+    justifyContent: 'flex-end',
     alignItems: 'center',
     flexDirection: 'column',
-    justifyContent: 'flex-end',
-    flex: 1,
+    height: screenHeight,
   },
   item: {
     flexDirection: 'row',
@@ -39,11 +44,15 @@ const styles = StyleSheet.create({
  * @param {{onSubmitGuess: function()}} props for GameScreen.
  */
 export const GameScreen = ({ onSubmitGuess }) => (
-  <View style={styles.container}>
+  <ScrollView
+    style={styles.container}
+    contentContainerStyle={styles.contentContainer}
+    keyboardDismissMode="interactive"
+  >
     <View style={styles.item}>
       <PlayerInput onSubmitEditing={onSubmitGuess} />
     </View>
-  </View>
+  </ScrollView>
 );
 
 GameScreen.propTypes = {
