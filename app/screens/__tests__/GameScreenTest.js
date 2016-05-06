@@ -14,13 +14,14 @@ import GameScreen from '../GameScreen.js';
 
 /* Create mock function to pass in as prop for testing */
 const submitGuess = jest.genMockFunction();
+const onFocus = jest.genMockFunction();
 
 describe('GameScreen', () => {
   let output;
 
   beforeEach(() => {
     const renderer = TestUtils.createRenderer();
-    renderer.render(<GameScreen onSubmitGuess={submitGuess} />);
+    renderer.render(<GameScreen onSubmitGuess={submitGuess} onFocus={onFocus} />);
     output = renderer.getRenderOutput();
   });
 

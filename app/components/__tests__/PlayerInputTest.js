@@ -14,13 +14,14 @@ import PlayerInput from '../PlayerInput.js';
 
 /* Create mock function to pass in as prop for testing */
 const submitGuess = jest.genMockFunction();
+const onFocus = jest.genMockFunction();
 
 describe('PlayerInput', () => {
   let output;
 
   beforeEach(() => {
     const renderer = TestUtils.createRenderer();
-    renderer.render(<PlayerInput onSubmitEditing={submitGuess} />);
+    renderer.render(<PlayerInput onSubmitEditing={submitGuess} onFocus={onFocus} />);
     output = renderer.getRenderOutput();
   });
 
@@ -38,7 +39,7 @@ describe('PlayerInput', () => {
 
   it('should have an onSubmitEditing event', () => {
     const textInput = findWithType(output, TextInput);
-    textInput.props.onSubmitEditing();
+    textInput.props.onSubmitEditing({ nativeEvent: {} });
     expect(submitGuess).toBeCalled();
   });
 });

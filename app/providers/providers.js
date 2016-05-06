@@ -1,5 +1,6 @@
 /* Import Actions */
 import { joinGame, joinRandomGame, submitGuess } from '../actions/user.js';
+import { updateUIState } from '../actions/ui.js';
 import { Actions } from 'react-native-router-flux';
 
 /* Home Screen Providers*/
@@ -32,11 +33,14 @@ export const mapGameScreen = {
   },
   mapDispatchToProps(dispatch) {
     return {
-      onSubmitGuess: (event) => {
+      onSubmitGuess: (message) => {
         /**
          * TODO: remove hardcoded userid
          */
-        dispatch(submitGuess(6, event.nativeEvent.text));
+        dispatch(submitGuess(6, message));
+      },
+      onFocus: () => {
+        dispatch(updateUIState());
       },
     };
   },

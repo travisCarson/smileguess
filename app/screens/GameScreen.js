@@ -12,7 +12,6 @@ import React, {
   StyleSheet,
   PropTypes,
   Dimensions,
-  Text,
 } from 'react-native';
 import PlayerInput from '../components/PlayerInput.js';
 
@@ -43,20 +42,21 @@ const styles = StyleSheet.create({
  * or the players who are guessing.
  * @param {{onSubmitGuess: function()}} props for GameScreen.
  */
-export const GameScreen = ({ onSubmitGuess }) => (
+export const GameScreen = ({ onSubmitGuess, onFocus }) => (
   <ScrollView
     style={styles.container}
     contentContainerStyle={styles.contentContainer}
     keyboardDismissMode="interactive"
   >
     <View style={styles.item}>
-      <PlayerInput onSubmitEditing={onSubmitGuess} />
+      <PlayerInput onSubmitEditing={onSubmitGuess} onFocus={onFocus} />
     </View>
   </ScrollView>
 );
 
 GameScreen.propTypes = {
   onSubmitGuess: PropTypes.func.isRequired,
+  onFocus: PropTypes.func.isRequired,
 };
 
 /**

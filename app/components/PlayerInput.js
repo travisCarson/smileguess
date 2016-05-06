@@ -32,13 +32,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const PlayerInput = ({ onSubmitEditing }) => (
+const PlayerInput = ({ onSubmitEditing, onFocus }) => (
   <View style={styles.container}>
     <TextInput
       style={styles.inputField}
       placeholder="Input your guess"
       returnKeyType="send"
-      onSubmitEditing={onSubmitEditing}
+      onSubmitEditing={(event) => (onSubmitEditing(event.nativeEvent.text))}
+      onFocus={onFocus}
     />
     <Button style={styles.send}>Send</Button>
   </View>
@@ -46,6 +47,7 @@ const PlayerInput = ({ onSubmitEditing }) => (
 
 PlayerInput.propTypes = {
   onSubmitEditing: PropTypes.func.isRequired,
+  onFocus: PropTypes.func.isRequired,
 };
 
 export default PlayerInput;

@@ -37,6 +37,7 @@ export const JOIN_RANDOM_GAME = 'server/joinRandomGame';
 export const JOIN_GAME = 'server/joinGame';
 
 /**
- * Client->Client: sample comment for ui (client to client) actions
+ * Client->Client: sent from the view to update parts of the ui state being tracked in
+ * the store.
  */
-
+export const UPDATE_UI_STATE = 'UPDATE_UI_STATE';
