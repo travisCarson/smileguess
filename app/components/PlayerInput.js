@@ -39,7 +39,6 @@ const PlayerInput = ({ onSubmitEditing, onFocus }) => (
       placeholder="Input your guess"
       returnKeyType="send"
       onSubmitEditing={(event) => (onSubmitEditing(event.nativeEvent.text))}
-      onFocus={onFocus}
     />
     <Button style={styles.send}>Send</Button>
   </View>
@@ -47,7 +46,6 @@ const PlayerInput = ({ onSubmitEditing, onFocus }) => (
 
 PlayerInput.propTypes = {
   onSubmitEditing: PropTypes.func.isRequired,
-  onFocus: PropTypes.func.isRequired,
 };
 
 export default PlayerInput;

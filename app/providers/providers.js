@@ -28,8 +28,10 @@ export const mapHomeScreen = {
 
 /* Game Screen Providers*/
 export const mapGameScreen = {
-  mapStateToProps() {
-    return {};
+  mapStateToProps(state) {
+    return {
+      visibleHeight: state.ui.visibleHeight,
+    };
   },
   mapDispatchToProps(dispatch) {
     return {
@@ -39,8 +41,8 @@ export const mapGameScreen = {
          */
         dispatch(submitGuess(6, message));
       },
-      onFocus: () => {
-        dispatch(updateUIState());
+      onKeyboardEnter: (payload) => {
+        dispatch(updateUIState(payload));
       },
     };
   },
