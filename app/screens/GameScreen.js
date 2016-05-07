@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
     flexDirection: 'column',
-    // height: screenHeight,
   },
   item: {
     flexDirection: 'row',
@@ -45,38 +44,46 @@ const styles = StyleSheet.create({
  * @param {{onSubmitGuess: function()}} props for GameScreen.
  */
 export class GameScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      screenHeight,
+      screenWidth,
+      visibleHeight: screenHeight,
+      visibleWidth: screenWidth,
+    };
+  }
+
   componentDidMount() {
-    const { onKeyboardEnter } = this.props;
     DeviceEventEmitter.addListener('keyboardWillShow', (e) => {
-      // console.log(e);
-      onKeyboardEnter({ keyboardHeight: e.endCoordinates.height })
-    });
-    DeviceEventEmitter.addListener('keyboardWillHide', (e) => {
-      console.log(e);
       LayoutAnimation.configureNext({
-        duration: 200,
-        create: {
-          type: LayoutAnimation.Types.linear,
-        },
+        duration: 250,
         update: {
-          type: LayoutAnimation.Types.curveEaseInEaseOut,
+          type: LayoutAnimation.Types.keyboard,
         },
       });
-      onKeyboardEnter({ keyboardHeight: 0 })
+      this.setState({ visibleHeight: this.state.screenHeight - e.endCoordinates.height });
     });
-    DeviceEventEmitter.addListener('keyboardWillChangeFrame', (e) => {
-      console.log('Keyboard Changing Frame: ',e);
+
+    DeviceEventEmitter.addListener('keyboardWillHide', () => {
+      LayoutAnimation.configureNext({
+        duration: 250,
+        update: {
+          type: LayoutAnimation.Types.keyboard,
+        },
+      });
+      this.setState({ visibleHeight: this.state.screenHeight });
     });
   }
   render() {
-    const { onSubmitGuess, visibleHeight } = this.props;
+    const { onSubmitGuess } = this.props;
     const localStyles = StyleSheet.create({
       contentContainer: {
-        height: visibleHeight,
+        height: this.state.visibleHeight,
       },
     });
 
-    console.log(visibleHeight);
+    // console.log(visibleHeight);
     return (
       <ScrollView
         style={[styles.container]}
@@ -94,8 +101,6 @@ export class GameScreen extends React.Component {
 
 GameScreen.propTypes = {
   onSubmitGuess: PropTypes.func.isRequired,
-  onKeyboardEnter: PropTypes.func.isRequired,
-  visibleHeight: PropTypes.number.isRequired,
 };
 
 /**

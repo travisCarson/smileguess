@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const PlayerInput = ({ onSubmitEditing, onFocus }) => (
+const PlayerInput = ({ onSubmitEditing }) => (
   <View style={styles.container}>
     <TextInput
       style={styles.inputField}

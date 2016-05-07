@@ -1,6 +1,5 @@
 /* Import Actions */
 import { joinGame, joinRandomGame, submitGuess } from '../actions/user.js';
-import { updateUIState } from '../actions/ui.js';
 import { Actions } from 'react-native-router-flux';
 
 /* Home Screen Providers*/
@@ -28,10 +27,8 @@ export const mapHomeScreen = {
 
 /* Game Screen Providers*/
 export const mapGameScreen = {
-  mapStateToProps(state) {
-    return {
-      visibleHeight: state.ui.visibleHeight,
-    };
+  mapStateToProps() {
+    return {};
   },
   mapDispatchToProps(dispatch) {
     return {
@@ -40,9 +37,6 @@ export const mapGameScreen = {
          * TODO: remove hardcoded userid
          */
         dispatch(submitGuess(6, message));
-      },
-      onKeyboardEnter: (payload) => {
-        dispatch(updateUIState(payload));
       },
     };
   },
