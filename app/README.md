@@ -15,8 +15,8 @@ let sampleState = {
    * - players: This is an array of ids of all the users in the game.
    */
   players: {
-    playersById: { 1: userObj, 2: userObj, 3: userObj },
-    players: ['1', '2', '3'],
+    all: { 1: userObj, 2: userObj, 3: userObj },
+    byId: ['1', '2', '3'],
   },
 
   /* This is an object which represents attributes of the

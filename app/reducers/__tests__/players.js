@@ -4,8 +4,8 @@ import { SOCKET_PLAYER_JOIN_GAME, SOCKET_PLAYER_LEAVE_GAME } from '../../action_
 
 const myInitialState = {
   someOtherKey: true,
-  players: [1],
-  playersById: { 1: {
+  byId: [1],
+  all: { 1: {
     id: 1,
     username: 'bob',
   } },
@@ -31,7 +31,7 @@ describe('Players Reducer', () => {
   it('should add the player to the state if given a "SOCKET_PLAYER_JOIN_GAME" action', () => {
     const myAction = { type: SOCKET_PLAYER_JOIN_GAME, player: { id: 2, username: 'joan' } };
     const myNewState = playerReducer(myInitialState, myAction);
-    expect(myNewState.playersById[2].username).toEqual('joan');
+    expect(myNewState.all[2].username).toEqual('joan');
   });
   it('should keep existing keys when given an action', () => {
     const myAction = { type: SOCKET_PLAYER_JOIN_GAME, player: { id: 2, username: 'joan' } };
@@ -43,7 +43,7 @@ describe('Players Reducer', () => {
     const myState = playerReducer(myInitialState, myAction);
     const myNewAction = { type: SOCKET_PLAYER_LEAVE_GAME, userid: 2 };
     const myNewState = playerReducer(myState, myNewAction);
-    expect(myNewState.playersById[2]).toBe(undefined);
+    expect(myNewState.all[2]).toBe(undefined);
   });
 });
 
