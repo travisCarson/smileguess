@@ -1,6 +1,7 @@
 /* Import Actions */
 import { joinGame, joinRandomGame, submitGuess } from '../actions/user.js';
 import { Actions } from 'react-native-router-flux';
+import { fakeMessages } from './dummyData.js';
 
 
 /* Home Screen Providers*/
@@ -28,8 +29,10 @@ export const mapHomeScreen = {
 
 /* Game Screen Providers*/
 export const mapGameScreen = {
-  mapStateToProps() {
-    return {};
+  mapStateToProps(state) {
+    return {
+      messages: state.messages,
+    };
   },
   mapDispatchToProps(dispatch) {
     return {

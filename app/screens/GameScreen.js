@@ -16,21 +16,21 @@ import React, {
   LayoutAnimation,
 } from 'react-native';
 import PlayerInput from '../components/PlayerInput.js';
+import ChatsList from '../components/ChatsList.js';
 
 const { height: screenHeight, width: screenWidth } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  },
-  contentContainer: {
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    height: screenHeight,
     flexDirection: 'column',
+    backgroundColor: 'red',
   },
-  item: {
+  chatContainer: {
     flexDirection: 'row',
-    backgroundColor: 'green',
+    width: screenWidth,
+  },
+  chats: {
     width: screenWidth,
   },
 });
@@ -53,8 +53,8 @@ export class GameScreen extends React.Component {
       visibleWidth: screenWidth,
     };
   }
-
   componentDidMount() {
+    console.log(this.state.visibleHeight);
     DeviceEventEmitter.addListener('keyboardWillShow', (e) => {
       LayoutAnimation.configureNext({
         duration: 250,
@@ -63,6 +63,7 @@ export class GameScreen extends React.Component {
         },
       });
       this.setState({ visibleHeight: this.state.screenHeight - e.endCoordinates.height });
+      console.log(e, ' ', this.state.visibleHeight);
     });
 
     DeviceEventEmitter.addListener('keyboardWillHide', () => {
@@ -75,25 +76,34 @@ export class GameScreen extends React.Component {
       this.setState({ visibleHeight: this.state.screenHeight });
     });
   }
-  render() {
+  renderFooter() {
     const { onSubmitGuess } = this.props;
+    return (
+      <View style={styles.chatContainer}>
+        <PlayerInput onSubmitEditing={onSubmitGuess} />
+      </View>
+    );
+  }
+  render() {
+    const { messages, onSubmitGuess } = this.props;
     const localStyles = StyleSheet.create({
-      contentContainer: {
+      container: {
         height: this.state.visibleHeight,
       },
     });
-
     // console.log(visibleHeight);
     return (
-      <ScrollView
-        style={[styles.container]}
-        contentContainerStyle={[localStyles.contentContainer, styles.contentContainer]}
-        keyboardDismissMode="interactive"
+      <View
+        style={[styles.container, localStyles.container]}
       >
-        <View style={styles.item}>
+        <ChatsList
+          style={styles.chats}
+          messages={messages}
+        />
+        <View>
           <PlayerInput onSubmitEditing={onSubmitGuess} />
         </View>
-      </ScrollView>
+      </View>
     );
   }
 }
@@ -101,6 +111,7 @@ export class GameScreen extends React.Component {
 
 GameScreen.propTypes = {
   onSubmitGuess: PropTypes.func.isRequired,
+  messages: PropTypes.array.isRequired,
 };
 
 /**
