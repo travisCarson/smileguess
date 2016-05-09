@@ -7,7 +7,14 @@ This folder contains all of the react client code for the app
 ```javascript
 let sampleState = {
   // This should be a singular object with the users properties
-  user: { username: 'bob', id: 5 },
+  user: { 
+  id: 5, // unique user id
+  username: 'bob', // username
+  points: 555, // points in current game
+  wins: 3, // wins in current game
+  emojicoins: 3, // total number of emojicoins across games
+  picture: {thumbnail: 'http://cdn.photonesta.com/images/data.whicdn.com/images/127977939/original.png'} // user profile pic
+  }
 
   /* There are two keys in the players portion of the store:
    * - playersById: This is an object where the userids map to key/value objects
