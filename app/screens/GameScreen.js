@@ -8,7 +8,6 @@ import { mapGameScreen } from '../providers/providers.js';
 /* Import Components */
 import React, {
   View,
-  ScrollView,
   StyleSheet,
   PropTypes,
   Dimensions,
@@ -24,15 +23,14 @@ const styles = StyleSheet.create({
   container: {
     height: screenHeight,
     flexDirection: 'column',
-    backgroundColor: 'red',
+    justifyContent: 'flex-end',
   },
   chatContainer: {
-    flexDirection: 'row',
     width: screenWidth,
   },
-  chats: {
-    width: screenWidth,
-  },
+  // spacing: {
+  //   flex: 1,
+  // },
 });
 
 /* eslint-disable react/prefer-stateless-function */
@@ -41,7 +39,11 @@ const styles = StyleSheet.create({
  * It defines the game room players will see while playing the game.
  * It displays messages as well as allows for user input form either the dealer
  * or the players who are guessing.
- * @param {{onSubmitGuess: function()}} props for GameScreen.
+ * @param {Object} props - props for GameScreen component.
+ * @param {function()} props.onSubmitGuess - handler for receiving user input
+ * in the PlayerInput component.
+ * @param {Array<Object>} props.messages - an array of message objects to be
+ * rendered by the ChatsList component.
  */
 export class GameScreen extends React.Component {
   constructor(props) {
@@ -53,8 +55,11 @@ export class GameScreen extends React.Component {
       visibleWidth: screenWidth,
     };
   }
+
+  /* Listen for the keyboard events and resize the component accordingly
+   * leveraging React's LayoutAnimation API.
+   */
   componentDidMount() {
-    console.log(this.state.visibleHeight);
     DeviceEventEmitter.addListener('keyboardWillShow', (e) => {
       LayoutAnimation.configureNext({
         duration: 250,
@@ -63,7 +68,6 @@ export class GameScreen extends React.Component {
         },
       });
       this.setState({ visibleHeight: this.state.screenHeight - e.endCoordinates.height });
-      console.log(e, ' ', this.state.visibleHeight);
     });
 
     DeviceEventEmitter.addListener('keyboardWillHide', () => {
@@ -76,14 +80,10 @@ export class GameScreen extends React.Component {
       this.setState({ visibleHeight: this.state.screenHeight });
     });
   }
-  renderFooter() {
-    const { onSubmitGuess } = this.props;
-    return (
-      <View style={styles.chatContainer}>
-        <PlayerInput onSubmitEditing={onSubmitGuess} />
-      </View>
-    );
-  }
+
+  /* We must calculate styles on each render in order to animate height
+   * based on state changes
+   */
   render() {
     const { messages, onSubmitGuess } = this.props;
     const localStyles = StyleSheet.create({
@@ -91,18 +91,11 @@ export class GameScreen extends React.Component {
         height: this.state.visibleHeight,
       },
     });
-    // console.log(visibleHeight);
     return (
-      <View
-        style={[styles.container, localStyles.container]}
-      >
-        <ChatsList
-          style={styles.chats}
-          messages={messages}
-        />
-        <View>
-          <PlayerInput onSubmitEditing={onSubmitGuess} />
-        </View>
+      <View style={[styles.container, localStyles.container]} >
+        <View style={styles.spacing} />
+        <ChatsList style={styles.chatContainer} messages={messages} />
+        <PlayerInput onSubmitEditing={onSubmitGuess} />
       </View>
     );
   }
