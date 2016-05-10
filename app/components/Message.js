@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   guessText: {
     color: 'white',
   },
-  clueTest: {
+  clueText: {
     color: '#555555',
   },
   dealerMessage: {

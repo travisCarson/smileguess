@@ -4,6 +4,9 @@
  * This class stubs out the React-Native classes with React classes
  */
 'use strict';
+
+/* eslint-disable react/no-multi-comp react/prefer-stateless-function */
+
 /**
  * ## Imports
  *
@@ -27,7 +30,7 @@ class View extends React.Component {
 }
 
 View.propTypes = {
-  style: React.PropTypes.object,
+  style: React.PropTypes.any,
 };
 
 class TextInput extends React.Component {
@@ -36,6 +39,14 @@ class TextInput extends React.Component {
 
 TextInput.propTypes = {
   style: React.PropTypes.object,
+};
+
+class Text extends React.Component {
+  render() { return false; }
+}
+
+Text.propTypes = {
+  style: React.PropTypes.any,
 };
 
 class PixelRatio extends React.Component {
@@ -49,9 +60,29 @@ class Dimensions {
 }
 
 class ListView extends React.Component {
-  static DataSource() {
+  render() {
+    return (
+      <View>
+        {
+          this.props.dataSource.map((datum) =>
+            this.props.renderRow(datum))
+        }
+      </View>
+    );
   }
 }
+
+ListView.DataSource = class {
+  cloneWithRows(dataSource) {
+    return dataSource;
+  }
+};
+
+ListView.propTypes = {
+  dataSource: React.PropTypes.array,
+  renderRow: React.PropTypes.func,
+};
+
 /**
  * ## Stubs
  *
@@ -59,7 +90,7 @@ class ListView extends React.Component {
  */
 ReactNative.View = View;
 ReactNative.ScrollView = View;
-ReactNative.Text = View;
+ReactNative.Text = Text;
 ReactNative.TouchableOpacity = View;
 ReactNative.TouchableHighlight = View;
 ReactNative.TouchableWithoutFeedback = View;
@@ -73,3 +104,6 @@ ReactNative.ListView = ListView;
 
 ReactNative.Platform = {};
 module.exports = ReactNative;
+
+
+/* eslint-enable react/no-multi-comp react/prefer-stateless-function  */

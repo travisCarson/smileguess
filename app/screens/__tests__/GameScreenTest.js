@@ -15,12 +15,28 @@ import GameScreen from '../GameScreen.js';
 /* Create mock function to pass in as prop for testing */
 const submitGuess = jest.genMockFunction();
 
+/* Setup mock data */
+const fakeMessages = [
+  {
+    userid: 1,
+    type: 'guess',
+    message: 'I dont know.',
+  },
+  {
+    userid: 2,
+    type: 'guess',
+    message: 'I dont know.',
+  }];
+
 describe('GameScreen', () => {
   let output;
 
   beforeEach(() => {
     const renderer = TestUtils.createRenderer();
-    renderer.render(<GameScreen onSubmitGuess={submitGuess} />);
+    renderer.render(<GameScreen
+      onSubmitGuess={submitGuess}
+      messages={fakeMessages}
+    />);
     output = renderer.getRenderOutput();
   });
 

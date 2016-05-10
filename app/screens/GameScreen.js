@@ -81,6 +81,11 @@ export class GameScreen extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    DeviceEventEmitter.removeAllListeners('keyboardWillHide');
+    DeviceEventEmitter.removeAllListeners('keyboardWillShow');
+  }
+
   /* We must calculate styles on each render in order to animate height
    * based on state changes
    */
