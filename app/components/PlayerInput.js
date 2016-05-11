@@ -6,6 +6,7 @@ import React, {
   TextInput,
 } from 'react-native';
 import Button from 'react-native-button';
+import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
   container: {
@@ -39,7 +40,13 @@ const PlayerInput = ({ onSubmitEditing }) => (
       returnKeyType="send"
       onSubmitEditing={(event) => (onSubmitEditing(event.nativeEvent.text))}
     />
-    <Button style={styles.send}>Send</Button>
+    <Button
+      style={styles.send}
+      onPress={() => Actions.showGameScreen_toast({
+        showToast: true,
+        toastMessage: 'Sylvia has won the game!',
+      })}
+    >Send</Button>
   </View>
 );
 
