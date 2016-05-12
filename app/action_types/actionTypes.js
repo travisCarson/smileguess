@@ -22,6 +22,10 @@ export const SOCKET_PLAYER_LEAVE_GAME = 'SOCKET_PLAYER_LEAVE_GAME';
  * Server->Client: dealer receives prompt from the server
  */
 export const SOCKET_DEALER_RECEIVE_PROMPT = 'SOCKET_DEALER_RECEIVE_PROMPT';
+/**
+ * Server->Client->Client: fetch the user associated with the deviceid from an api endpoint
+ */
+export const UPDATE_USER_STATE = 'UPDATE_USER_STATE';
 
 /**
  * Client->Server: sent to server when the client wants to broadcast a guess

@@ -4,6 +4,7 @@ import messages from './messages.js';
 import game from './game.js';
 import routes from './routes.js';
 import ui from './ui.js';
+import user from './user.js';
 
 const rootReducer = combineReducers({
   players,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   game,
   routes,
   ui,
+  user,
 });
 
 export default rootReducer;
