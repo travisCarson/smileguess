@@ -7,12 +7,6 @@ Instructions for setting up your react-native development environment:
 
 https://facebook.github.io/react-native/docs/getting-started.html
 
-Install Dependencies
-```bash
-npm install -g rnpm //sudo may be required for this
-rnpm link
-```
-
 Once your development environment is set up, start the ios emulator with `react-native run-ios`
 
 Our server code is in another repo:
@@ -23,7 +17,7 @@ https://github.com/smileguess/smileguess-server
 ```javascript
 let sampleState = {
   // This should be a singular object with the users properties
-  user: { 
+  user: {
     id: 5, // unique user id
     username: 'bob', // username
     points: 555, // points in current game
@@ -76,7 +70,7 @@ let sampleState = {
     byId: [id, id, id, id, id],
   },
 
-  /* This is an object required by react-native-router-flux. It contains 
+  /* This is an object required by react-native-router-flux. It contains
    * relevant 'scenes' which are represented by screens*/
   routes: { scene },
 };
