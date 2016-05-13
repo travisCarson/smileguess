@@ -62,7 +62,7 @@ let sampleState = {
    */
   messages: {
     all: { 
-      5: { id: 5, time: 123456, userId: 0, type: 'winner', winnerId: 1, },
+      5: { id: 5, time: 123456, userId: 0, type: 'winner', message: 'Sylvia won the round!', },
       4: { id: 4, time: 123455, userId: 1, type: 'guess', message: 'Home Alone', },
       3: { id: 3, time: 123454, userId: 3, type: 'clue', message: '[Emojies...]', },
       2: { id: 2, time: 123446, userId: 2, type: 'guess', message: 'SpIderman', },
