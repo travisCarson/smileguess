@@ -30,22 +30,23 @@ let sampleState = {
    * that updates from the server to this part of the store can happen in a simple way.
    * The server will have pre-configured an action to be integrated wholesale into the store.
    */
-  game: {
-    /* There are two keys in the players portion of the store:
-     * - players.all: This is an object where the userids map to key/value objects
-     *   which represent players in the current game.
-     * - players.byId: This is an array of ids of all the users in the game.
-     */
-    players: {
-      all: { 1: userObj, 2: userObj, 3: userObj },
-      byId: ['1', '2', '3'],
-    },
-    dealerId: 3,
-    prompt: 'Avengers',
-    category: 'Movie',
-    initialClue: '[Emojies...]',
-    state: 'waiting for dealer',
-  },
+   game: {
+     /* There are two keys in the players portion of the store:
+      * - players.all: This is an object where the userids map to key/value objects
+      *   which represent players in the current game.
+      * - players.byId: This is an array of ids of all the users in the game.
+      */
+     players: {
+       all: { 1: userObj, 2: userObj, 3: userObj },
+       byId: ['1', '2', '3'],
+     },
+     dealerId: 3,
+     prompt: {
+       category: 'Movies',
+       forDisplay: 'Avengers',
+     },
+     active: false,
+   },
 
   /* This part of the state is for toast and other messages that are being displayed.
    * They are removed from the store when the player dismisses them.
@@ -60,14 +61,14 @@ let sampleState = {
    * - messages.byId: This is an array of ids of all the messages in the game.
    */
   messages: {
-    all: [
-      { id: 5, time: 123456, userId: 0, type: 'winner', winnerId: 1 },
-      { id: 4, time: 123455, userId: 1, type: 'guess', message: 'Home Alone' },
-      { id: 3, time: 123454, userId: 3, type: 'clue', message: '[Emojies...]' },
-      { id: 2, time: 123446, userId: 2, type: 'guess', message: 'SpIderman' },
-      { id: 1, time: 123443, userId: 1, type: 'guess', message: 'The Avengers' },
-    ],
-    byId: [id, id, id, id, id],
+    all: { 
+      5: { id: 5, time: 123456, userId: 0, type: 'winner', winnerId: 1, },
+      4: { id: 4, time: 123455, userId: 1, type: 'guess', message: 'Home Alone', },
+      3: { id: 3, time: 123454, userId: 3, type: 'clue', message: '[Emojies...]', },
+      2: { id: 2, time: 123446, userId: 2, type: 'guess', message: 'SpIderman', },
+      1: { id: 1, time: 123443, userId: 1, type: 'guess', message: 'The Avengers', },
+    },
+    byId: [5, 4, 3, 2, 1],
   },
 
   /* This is an object required by react-native-router-flux. It contains
