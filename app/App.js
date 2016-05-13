@@ -1,6 +1,6 @@
 /* Import Dependencies */
 import React, { Dimensions } from 'react-native';
-import { Actions, Scene, Modal, Router, NavBar } from 'react-native-router-flux';
+import { Actions, Scene, Modal, Router } from 'react-native-router-flux';
 import { connect, Provider } from 'react-redux';
 import DeviceInfo from 'react-native-device-info';
 
@@ -9,7 +9,6 @@ import HomeScreen from './screens/HomeScreen.js';
 import GameScreen from './screens/GameScreen.js';
 import StatsScreen from './screens/StatsScreen.js';
 import DealerChangeScreen from './screens/DealerChangeScreen';
-import Toast from './components/Toast.js';
 import CustomNav from './components/CustomNav.js';
 
 
@@ -62,8 +61,13 @@ const scenes = Actions.create(
     <Scene key="root">
       <Scene hideNavBar type="replace" key="showHomeScreen" initial component={HomeScreen} />
       <Scene
-        type="push" key="showGameScreen" component={GameScreen} title="Your game!"
-        onRight={() => Actions.showStatsScreen()} rightTitle="Stats"
+        type="push"
+        key="showGameScreen"
+        component={GameScreen}
+        navBar={CustomNav}
+        title="Your game!"
+        onRight={() => Actions.showStatsScreen()}
+        rightTitle="Stats"
       >
         <Scene
           key="showGameScreen_default"

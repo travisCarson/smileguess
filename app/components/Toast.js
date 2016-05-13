@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
  */
 class Toast extends React.Component {
   render() {
-    const { toastMessage, screenSize } = this.props;
+    const { toastMessage, screenSize, dequeueMemo } = this.props;
     return (
       <Image
         style={[
@@ -77,9 +77,7 @@ class Toast extends React.Component {
           <View style={styles.row1}>
             <TouchableOpacity
               style={styles.buttonBG}
-              onPress={() => Actions.showGameScreen_default({
-                navType: 'nav',
-              })}
+              onPress={dequeueMemo}
             >
               <Text style={styles.font}> X </Text>
             </TouchableOpacity>
@@ -94,7 +92,8 @@ class Toast extends React.Component {
 }
 Toast.propTypes = {
   toastMessage: PropTypes.string.isRequired,
-  screenSize: PropTypes.object,
+  screenSize: PropTypes.object.isRequired,
+  dequeueMemo: PropTypes.func.isRequred,
 };
 
 export default Toast;

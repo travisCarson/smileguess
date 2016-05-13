@@ -26,7 +26,6 @@ export const SEND_GUESS_MESSAGE = 'server/sendGuessMessage';
 export const SEND_CLUE_MESSAGE = 'server/sendClueMessage';
 
 /**
- * Client->Client: sent from the view to update parts of the ui state being tracked in
- * the store.
+ * Client->Client: Indicates that the user has read the most recent notificaiton.
  */
-export const UPDATE_UI_STATE = 'UPDATE_UI_STATE';
+export const DEQUEUE_GAME_MEMO = 'DEQUEUE_GAME_MEMO';

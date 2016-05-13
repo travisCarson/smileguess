@@ -1,4 +1,8 @@
-import { SEND_CLUE_MESSAGE, SEND_GUESS_MESSAGE } from '../action_types/actionTypes.js';
+import {
+  SEND_CLUE_MESSAGE,
+  SEND_GUESS_MESSAGE,
+  DEQUEUE_GAME_MEMO,
+} from '../action_types/actionTypes.js';
 
 /**
  * Creates an action for submitting a guess to the server
@@ -20,3 +24,10 @@ export const submitClue = (userid, message) => ({
   message,
 });
 
+/**
+ * This creates an action which removes a memo from the notifications
+ * queue once it has been dismissed by the user.
+ */
+export const dequeueMemo = () => ({
+  type: DEQUEUE_GAME_MEMO,
+});

@@ -1,8 +1,15 @@
+/* Import React/ Redux dependencies */
 import React, {
   PropTypes,
 } from 'react-native';
+import { connect } from 'react-redux';
+
+/* Import Nav Sub Compoents */
 import { NavBar } from 'react-native-router-flux';
 import Toast from './Toast.js';
+
+/* Import Provider */
+import { mapCustomNav } from '../providers/providers.js';
 
 /**
  * CustomNav is a React class component which renders different Headers
@@ -10,13 +17,18 @@ import Toast from './Toast.js';
  * @param {Object} props - props for the component which are pased through to
  * child components wholesale.
  */
-export default class CustomNav extends React.Component {
+export class CustomNav extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { navType: this.props.navType || 'nav' };
+    this.state = { navType: 'nav' };
   }
   componentWillReceiveProps(nextProps) {
-    this.setState({ navType: nextProps.navType });
+    if (nextProps.notifications.length > 0) {
+      this.setState({ navType: 'toast' });
+      this.headerProps = { toastMessage: nextProps.notifications[0].body };
+      return;
+    }
+    this.setState({ navType: 'nav' });
   }
   renderNavigationBar() {
     switch (this.state.navType) {
@@ -31,12 +43,18 @@ export default class CustomNav extends React.Component {
   render() {
     const Header = this.renderNavigationBar();
     return (
-      <Header {...this.props} />
+      <Header {...this.props} {...this.headerProps} />
     );
   }
 }
 
 CustomNav.propTypes = {
-  screenSize: PropTypes.object,
-  navType: PropTypes.string,
+  screenSize: PropTypes.object.isRequired,
 };
+
+const CustomNavContainer = connect(
+  mapCustomNav.mapStateToProps,
+  mapCustomNav.mapDispatchToProps
+)(CustomNav);
+
+export default CustomNavContainer;
