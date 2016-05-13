@@ -6,7 +6,7 @@ import { UPDATE_USER_STATE } from '../action_types/actionTypes.js';
 export default (state = {}, action = {}) => {
   switch (action.type) {
     case UPDATE_USER_STATE:
-      return Object.assign({}, state, action.user);
+      return Object.assign({}, state, action.payload);
     default:
       return state;
   }

@@ -1,43 +1,15 @@
 jest.unmock('../user.js');
-import { joinGame, joinRandomGame, submitGuess } from '../user.js';
-import { JOIN_RANDOM_GAME, JOIN_GAME, SEND_GUESS_MESSAGE } from '../../action_types/actionTypes.js';
+import { submitGuess, submitClue } from '../user.js';
+import { SEND_GUESS_MESSAGE, SEND_CLUE_MESSAGE } from '../../action_types/actionTypes.js';
 
 describe('User Action Types', () => {
-  it('should have an action type JOIN_GAME', () => {
-    expect(JOIN_GAME).toBeDefined();
-    expect(JOIN_GAME).toMatch('server/joinGame');
-  });
-  it('should have an action type JOIN_RANDOM_GAME', () => {
-    expect(JOIN_RANDOM_GAME).toBeDefined();
-    expect(JOIN_RANDOM_GAME).toMatch('server/joinRandomGame');
-  });
   it('should have an action type SEND_GUESS_MESSAGE', () => {
     expect(SEND_GUESS_MESSAGE).toBeDefined();
     expect(SEND_GUESS_MESSAGE).toMatch('server/sendGuessMessage');
   });
-});
-
-describe('joinGame Action Creator', () => {
-  it('should be a function', () => {
-    expect(typeof joinGame).toEqual('function');
-  });
-  it('should return an object', () => {
-    expect(typeof joinGame(6)).toEqual('object');
-  });
-  it('should have a type property of JOIN_GAME', () => {
-    expect(joinGame(6).type).toEqual(JOIN_GAME);
-  });
-});
-
-describe('joinRandomGame Action Creator', () => {
-  it('should be a function', () => {
-    expect(typeof joinRandomGame).toEqual('function');
-  });
-  it('should return an object', () => {
-    expect(typeof joinRandomGame()).toEqual('object');
-  });
-  it('should have a type property of JOIN_GAME', () => {
-    expect(joinRandomGame().type).toEqual(JOIN_RANDOM_GAME);
+  it('should have an action type SEND_CLUE_MESSAGE', () => {
+    expect(SEND_CLUE_MESSAGE).toBeDefined();
+    expect(SEND_CLUE_MESSAGE).toMatch('server/sendClueMessage');
   });
 });
 
@@ -55,3 +27,19 @@ describe('submitGuess Action Creator', () => {
     expect(submitGuess(6, 'tree').message).toEqual('tree');
   });
 });
+
+describe('submitClue Action Creator', () => {
+  it('should be a function', () => {
+    expect(typeof submitClue).toEqual('function');
+  });
+  it('should return an object', () => {
+    expect(typeof submitClue(6, 'leaf')).toEqual('object');
+  });
+  it('should have a type property of SEND_CLUE_MESSAGE', () => {
+    expect(submitClue(6, 'leaf').type).toEqual(SEND_CLUE_MESSAGE);
+  });
+  it('should have a hint property of passed in hint', () => {
+    expect(submitClue(6, 'leaf').message).toEqual('leaf');
+  });
+});
+
