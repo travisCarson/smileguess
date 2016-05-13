@@ -13,7 +13,7 @@ export default function reducer(state = { scene: { notifications: [] } }, action
         scene: newScene,
       };
     case GAME_MEMO:
-      const newNotificaitons = state.scene.notifications.concat([action.payload]);
+      const newNotifications = state.scene.notifications.concat([action.payload]);
       newScene = Object.assign({}, state.scene, {
         notifications: newNotifications
       });
