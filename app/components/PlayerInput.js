@@ -93,6 +93,7 @@ class PlayerInput extends React.Component {
             }}
             value={this.state.text}
             blurOnSubmit={false}
+            clearButtonMode="while-editing"
           />
           <Button
             style={styles.send}

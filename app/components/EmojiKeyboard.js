@@ -13,16 +13,16 @@ import EmojiKeys from './EmojiKeys.js';
 import emojiData from '../assets/emojifile_array.js';
 import Emoji from './Emoji.js';
 
-const { height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
+
 const containerStyle = {
   flex: 1,
   justifyContent: 'flex-start',
   backgroundColor: '#c4c4c4',
-  padding: 5,
   position: 'absolute',
-  top: height - 55,
+  bottom: 0,
+  width,
 };
-
 const styles = StyleSheet.create({
   buttonBar: {
     flex: 1,
@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#FFFFFF',
     width: 100,
-    marginLeft: 20,
     borderColor: 'black',
     borderWidth: 1,
     borderRadius: 5,
@@ -52,6 +51,8 @@ class EmojiKeyboard extends React.Component {
       hidden: true,
       containerStyle,
     };
+
+    this.sendInput = this.sendInput.bind(this);
   }
 
   updateInput(input) {
@@ -90,14 +91,12 @@ class EmojiKeyboard extends React.Component {
       this.setState({
         containerStyle: {
           ...containerStyle,
-          top: height - 55,
         },
       });
     } else {
       this.setState({
         containerStyle: {
           ...containerStyle,
-          top: height - 355,
         },
       });
     }
@@ -122,7 +121,12 @@ class EmojiKeyboard extends React.Component {
     return (<View style={StyleSheet.create({ container: this.state.containerStyle }).container}>
       <TouchableHighlight onPress={() => this.toggleKeyboard()}>
         <View>
-          <EmojiInput emojiElements={this.state.inputView} />
+          <EmojiInput
+            emojiElements={this.state.inputView}
+            screenSize={this.props.screenSize}
+            onSend={this.sendInput}
+            value={this.state.input}
+          />
         </View>
       </TouchableHighlight>
       <View>
@@ -130,14 +134,6 @@ class EmojiKeyboard extends React.Component {
           emojiData={emojiData}
           updateInput={(input) => this.updateInput(input)}
         />
-      </View>
-      <View style={styles.buttonBar}>
-        <Button style={styles.button} onPress={() => this.removeInput()}>Backspace</Button>
-        <Button
-          className="sendButton"
-          style={styles.button} 
-          onPress={() => this.sendInput(this.state.input)}
-        >Send</Button>
       </View>
     </View>);
   }
@@ -147,6 +143,7 @@ EmojiKeyboard.propTypes = {
   onSend: PropTypes.func.isRequired,
   gameId: PropTypes.number.isRequired,
   userId: PropTypes.number.isRequired,
+  screenSize: PropTypes.object.isRequired,
 };
 
 export default EmojiKeyboard;
