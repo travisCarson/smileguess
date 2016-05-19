@@ -4,6 +4,7 @@ import React, {
   StyleSheet,
   Image,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import { BlurView } from 'react-native-blur';
 import Button from 'react-native-button';
@@ -29,6 +30,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     paddingLeft: 15,
     borderRadius: 4,
+    flexDirection: 'row',
   },
   blurContainer: {
     padding: 5,
@@ -37,6 +39,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
+  },
+  emojiIcons: {
+    height: 30,
+    width: 200,
+  },
+  emojiContentContainer: {
+    height: 30,
+    paddingTop: 4,
   },
   send: {
     padding: 5,
@@ -73,7 +83,13 @@ const EmojiInput = ({ emojiElements, value, screenSize, onSend }) => {
         blurType="light"
       >
         <View style={styles.inputBox}>
-          {emojiElements}
+          <ScrollView
+            style={styles.emojiIcons}
+            contentContainerStyle={styles.emojiContentContainer}
+            horizontal
+          >
+            {emojiElements}
+          </ScrollView>
           <TouchableOpacity style={styles.iconOpacity}>
             <Image
               source={clearIcon}

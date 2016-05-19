@@ -23,18 +23,12 @@ const containerStyle = {
   bottom: 0,
   width,
 };
+
 const styles = StyleSheet.create({
-  buttonBar: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-  button: {
-    backgroundColor: '#FFFFFF',
-    width: 100,
-    borderColor: 'black',
-    borderWidth: 1,
-    borderRadius: 5,
+  inputEmojis: {
+    transform: [
+      { scale: 0.5 },
+    ],
   },
 });
 
@@ -66,7 +60,14 @@ class EmojiKeyboard extends React.Component {
 
   inputView() {
     return this.state.input.map(
-      ([sheet_x, sheet_y], index) => <Emoji key={index} x={sheet_x} y={sheet_y} />
+      ([sheet_x, sheet_y], index) => (
+        <Emoji
+          key={index}
+          x={sheet_x}
+          y={sheet_y}
+          scale={0.65}
+        />
+      )
     );
   }
 
