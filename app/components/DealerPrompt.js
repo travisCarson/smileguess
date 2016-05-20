@@ -11,18 +11,22 @@ import { colors } from '../styles/colors.js';
 
 const styles = StyleSheet.create({
   prompt: {
-    textAlign: 'left',
+    textAlign: 'center',
+    fontSize: 16,
+    margin: 6,
+    color: 'white',
   },
   container: {
-    height: 30,
+    height: 40,
     padding: 5,
     paddingLeft: 15,
     paddingRight: 15,
     top: 62,
     right: 0,
-    backgroundColor: colors.primary2,
+    backgroundColor: '#e06ce3',
     justifyContent: 'center',
     flexDirection: 'row',
+    alignItems: 'center',
     position: 'absolute',
   },
 });
@@ -39,7 +43,7 @@ const DealerPrompt = ({ prompt, screenSize, backgroundColor }) => {
   const localStyles = StyleSheet.create({
     container: {
       width: screenSize.width,
-      backgroundColor,
+      // backgroundColor,
     },
   });
   return (
