@@ -5,6 +5,8 @@ import React, {
   PropTypes,
   Text,
   Image,
+  Animated,
+  Easing,
 } from 'react-native';
 
 import { colors } from '../styles/colors.js';
@@ -61,52 +63,79 @@ const styles = StyleSheet.create({
  * was sent.
  * @param {string} props.body - text body of the message.
  */
-const Message = ({ userId, time, body, currentUser, players, screenSize }) => {
-  const localStyles = StyleSheet.create({
-    row: {
-      width: screenSize.width,
+class Message extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      colorAnim: new Animated.Value(0),
+    };
+  }
+  componentDidMount() {
+    if (this.props.correct) {
+      Animated.timing(
+        this.state.colorAnim,
+        {
+          toValue: 1,
+          duration: 400,
+          easing: Easing.inOut(Easing.quad),
+        },
+      ).start();
     }
-  });
-  return (
-    <View style={[styles.row, localStyles.row]} >
-      <View style={[
-        styles.container,
-        userId === currentUser.id && styles.userContainer,
-        userId !== currentUser.id && styles.opponentContainer,
-      ]}
-      >
-        <Image
-          style={styles.thumbnail}
-          source={{ uri: players.all[userId].picture }}
-        />
-        <View>
-          <View style={styles.messageMeta} >
-            <Text style={styles.messageMetaFont}>
+  }
+  render() {
+    const { userId, time, body, currentUser, players, screenSize } = this.props;
+    const localStyles = StyleSheet.create({
+      row: {
+        width: screenSize.width,
+      }
+    });
+    return (
+      <View style={[styles.row, localStyles.row]} >
+        <View
+          style={[
+            styles.container,
+            userId === currentUser.id && styles.userContainer,
+            userId !== currentUser.id && styles.opponentContainer,
+          ]}
+        >
+          <Image
+            style={styles.thumbnail}
+            source={{ uri: players.all[userId].picture }}
+          />
+          <View>
+            <View style={styles.messageMeta} >
+              <Text style={styles.messageMetaFont}>
               {userId === currentUser.id ? 'me' : players.all[userId].username}
-            </Text>
-          </View>
-          <View
-            style={[
-              styles.messageBubble,
-              userId === currentUser.id && styles.userBubble,
-              userId !== currentUser.id && styles.opponentBubble,
-            ]}
-          >
-            <Text style={styles.guessText} >
-              {body}
-            </Text>
+              </Text>
+            </View>
+            <Animated.View
+              style={{
+                padding: 15,
+                borderRadius: 4,
+                backgroundColor:
+                  this.state.colorAnim.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [userId === currentUser.id ? '#A2C2EB' : '#8E79A8', '#1bc444'],
+                  }),
+              }}
+            >
+              <Text style={styles.guessText} >
+                {body}
+              </Text>
+            </Animated.View>
           </View>
         </View>
       </View>
-    </View>
-  );
-};
+    );
+  }
+}
 Message.propTypes = {
   type: PropTypes.string.isRequired,
   userId: PropTypes.number.isRequired,
   time: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
   screenSize: PropTypes.object.isRequired,
+  correct: PropTypes.bool.isRequired,
 };
 
 export default Message;
