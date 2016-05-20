@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: 'rgba(255, 255, 255, 0.75)',
     alignSelf: 'center',
-    paddingLeft: 15,
+    paddingLeft: 10,
     borderRadius: 4,
     flexDirection: 'row',
   },
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
  * it renders them in a little white box.
  * @param {array} emojiElements - an array of tuples representing the x/y coordinates of the emojies to render
  */
-const EmojiInput = ({ emojiElements, value, screenSize, onSend }) => {
+const EmojiInput = ({ emojiElements, value, screenSize, onSend, onClear }) => {
   return (
     <View
       style={[
@@ -90,7 +90,10 @@ const EmojiInput = ({ emojiElements, value, screenSize, onSend }) => {
           >
             {emojiElements}
           </ScrollView>
-          <TouchableOpacity style={styles.iconOpacity}>
+          <TouchableOpacity
+            style={styles.iconOpacity}
+            onPress={onClear}
+          >
             <Image
               source={clearIcon}
               style={styles.clearIcon}
@@ -112,6 +115,7 @@ EmojiInput.propTypes = {
   emojiElements: PropTypes.array.isRequired,
   screenSize: PropTypes.object.isRequired,
   onSend: PropTypes.func.isRequired,
+  onClear: PropTypes.func.isRequired,
   value: PropTypes.any.isRequired,
 };
 

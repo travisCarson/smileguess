@@ -127,6 +127,14 @@ class EmojiKeyboard extends React.Component {
             screenSize={this.props.screenSize}
             onSend={this.sendInput}
             value={this.state.input}
+            onClear={() => {
+              this.setState({
+                input: [],
+              });
+              this.setState({
+                inputView: this.inputView(),
+              });
+            }}
           />
         </View>
       </TouchableHighlight>
